@@ -44,7 +44,13 @@
       (recur (+ acc (first s)) (rest s)))))
 
 (defn parity [a-seq]
-  ":(")
+  (defn helper [r-set a-set]
+    (if (empty? a-set)
+      r-set
+      (if (odd? (second (first a-set)))
+        (helper (conj r-set (first (first a-set))) (rest a-set))
+        (helper r-set (rest a-set)))))
+  (helper #{} (frequencies a-seq)))
 
 (defn fast-fibo [n]
   (memoize
