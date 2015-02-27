@@ -48,11 +48,11 @@
 
 (defn fast-fibo [n]
   (memoize
-   (defn fib [x]
-     (if (< x 2)
-       x
-       (+ (fib (- x 1)) (fib (- x 2))))))
-  (fib n))
+   (defn fib [f1 f2 x]
+     (if (zero? x)
+       f2
+       (fib f2 (+ f1 f2) (dec x)))))
+  (fib 1 0 n))
 
 (defn cut-at-repetition [a-seq]
   (loop [seq-1 []
